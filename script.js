@@ -25,6 +25,7 @@ let leftButton = document.querySelector("#left-button");
 let rightButton = document.querySelector("#right-button");
 let totalItems;
 let circlesArray;
+let timer;
 
 leftButton.textContent = "<<<";
 rightButton.textContent = ">>>";
@@ -45,10 +46,14 @@ function initialiseCarousel() {
 function addEventListeners() {
   leftButton.addEventListener("click", () => {
     move(-1 * WIDTH_OF_CAROUSEL);
+    clearInterval(timer);
+    enableSlideshow();
   });
 
   rightButton.addEventListener("click", () => {
     move(WIDTH_OF_CAROUSEL);
+    clearInterval(timer);
+    enableSlideshow();
   });
 }
 
@@ -68,7 +73,7 @@ function move(step) {
 }
 
 function enableSlideshow() {
-  setInterval(() => {
+  timer = setInterval(() => {
     move(WIDTH_OF_CAROUSEL);
   }, 5000);
 }
